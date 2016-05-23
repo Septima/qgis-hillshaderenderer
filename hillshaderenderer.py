@@ -8,7 +8,9 @@ from PyQt4.QtGui import QColor
 class HillshadeRenderer ( QgsRasterRenderer ):
     def __init__( self ):
         QgsRasterRenderer.__init__(self)
-        self.zfactor = 4
+        self.zfactor = 4           # Vertical exaggeration
+        self.azimuth = -45      # in degrees
+        self.altitude = 45        # in degrees
 
     def block ( self, bandNo, extent, width, height ):
         self._log("block() called")
@@ -17,7 +19,7 @@ class HillshadeRenderer ( QgsRasterRenderer ):
         block = self.input().block ( 1, extent, width, height )
         data = self._block2numpy(block)
         #self._log(data)
-        shaded = self._hillshade(data, -45, 45, resolution, self.zfactor)
+        shaded = self._hillshade(data, self.azimuth, self.altitude, resolution, self.zfactor)
         #self._log(shaded)
         output = self._numpy2block(shaded)
         self._log(output)
