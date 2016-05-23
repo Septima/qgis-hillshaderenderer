@@ -8,12 +8,12 @@ The code is more like a proof of concept. It works on my data. Most of the time.
 To run the proof of concept code:
 
 1. Open QGIS and load DEM raster data
-2. Make the DEM layer active (click it in the legend). Apply any styling options you want to work for the hillshade (like transparency and resampling options)
-3. Run the [python code](hillshaderenderer.py) either by copy/pasting into the python console or using the built in editor.
+2. Make the DEM layer active (click it in the legend). Apply any color rendering and resampling options you want to work for the hillshade using the styling dialog.
+3. Run the [python code](hillshaderenderer.py) for instance by using the built in editor in the python console.
 
 ## Limitations
 
-There is nu GUI for setting options. They must be set in the code.
+There is no GUI for setting options. They must be set in the code.
 
 The hillshading algorithm uses the relationship between z units and xy units. At the moment it is assumed they are 1:1. This could probably be calculated. 
 
