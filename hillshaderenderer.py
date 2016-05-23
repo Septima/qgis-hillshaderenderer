@@ -46,8 +46,7 @@ class HillshadeRenderer ( QgsRasterRenderer ):
         for r in xrange(height):
             for c in xrange(width):
                 value = int(nparray[r,c])
-                color = QColor ( value, value, value )
-                block.setColor(r, c, color.rgb() )
+                block.setColor(r, c, qRgb( value, value, value ) )
         return block
         
     # http://geoexamples.blogspot.dk/2014/03/shaded-relief-images-using-gdal-python.html
