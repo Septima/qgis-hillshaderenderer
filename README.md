@@ -25,4 +25,4 @@ Changing the layer style (like transparency, blending mode etc) using the layer 
 
 ## Improvements
 
-My conversion between QgsRasterBlock and numpy array is outright dumb and extremely slow. I loop over all the pixels and copy them one by one... I think it could be done a lot faster using [QgsRasterBlock::bits	(		)](https://qgis.org/api/classQgsRasterBlock.html#a8b1799304477d0f01643891f5ee6395e), but unfortunately according to the docs it is not available from Python.
+My conversion between QgsRasterBlock and numpy array is outright dumb and extremely slow. I loop over all the pixels and copy them one by one... Using nearest neighbor it is reasonable fast on my machine, but when QGIS does oversampling it is noticable slower as the number of pixels quadruples. I think it could be done a lot faster using [QgsRasterBlock::bits	(		)](https://qgis.org/api/classQgsRasterBlock.html#a8b1799304477d0f01643891f5ee6395e), but unfortunately according to the docs it is not available from Python.
