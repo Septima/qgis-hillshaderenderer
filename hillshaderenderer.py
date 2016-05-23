@@ -8,14 +8,17 @@ from PyQt4.QtGui import QColor
 class HillshadeRenderer ( QgsRasterRenderer ):
     def __init__( self ):
         QgsRasterRenderer.__init__(self)
+        self.zfactor = 4
 
     def block ( self, bandNo, extent, width, height ):
         self._log("block() called")
+        resolution = extent.width() / float(width)
+        self._log("Resolution: " + str(resolution))
         block = self.input().block ( 1, extent, width, height )
         data = self._block2numpy(block)
-        self._log(data)
-        shaded = self._hillshade(data, -45, 45)
-        self._log(shaded)
+        #self._log(data)
+        shaded = self._hillshade(data, -45, 45, resolution, self.zfactor)
+        #self._log(shaded)
         output = self._numpy2block(shaded)
         self._log(output)
         return output
@@ -46,9 +49,10 @@ class HillshadeRenderer ( QgsRasterRenderer ):
         return block
         
     # http://geoexamples.blogspot.dk/2014/03/shaded-relief-images-using-gdal-python.html
-    def _hillshade(self, array, azimuth, angle_altitude):  
+    def _hillshade(self, array, azimuth, angle_altitude, resolution = 1, zfactor = 1):  
         self._log( "hillshade called")
-        x, y = np.gradient(array, 0.4, 0.4)
+        f = float(resolution) / zfactor
+        x, y = np.gradient(array, f, f)
         slope = np.pi/2. - np.arctan(np.sqrt(x*x + y*y) )  
         aspect = np.arctan2(-x, y)  
 
