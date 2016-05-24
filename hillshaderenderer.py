@@ -68,6 +68,10 @@ class HillshadeRenderer ( QgsRasterRenderer ):
     def _log(self, message):
         QgsMessageLog.logMessage(str(message), 'HillshadeRenderer', QgsMessageLog.INFO)
 
-
 renderer = HillshadeRenderer()
-iface.activeLayer().pipe().set( renderer )
+layer = iface.activeLayer()
+layer.pipe().set( renderer )
+
+if hasattr(layer, "setCacheImage"):
+  layer.setCacheImage(None)
+layer.triggerRepaint()
