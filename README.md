@@ -7,9 +7,10 @@ The code is more like a proof of concept. It works on my data. Most of the time.
 
 To run the proof of concept code:
 
-1. Open QGIS and load DEM raster data
-2. Make the DEM layer active (click it in the legend). Apply any color rendering and resampling options you want to work for the hillshade using the styling dialog.
-3. Run the [python code](hillshaderenderer.py) for instance by using the built in editor in the python console.
+1. Make shure the Python module `numpy` is installed
+2. Open QGIS and load DEM raster data
+3. Make the DEM layer active (click it in the legend). Apply any color rendering and resampling options you want to work for the hillshade using the styling dialog.
+4. Run the [python code](hillshaderenderer.py) for instance by using the built in editor in the python console.
 
 ## Limitations
 
