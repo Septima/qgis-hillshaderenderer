@@ -3,7 +3,7 @@
 from qgis.core import *
 from qgis.utils import iface
 import numpy as np
-from PyQt4.QtGui import QColor
+from PyQt4.QtGui import qRgb
     
 class HillshadeRenderer ( QgsRasterRenderer ):
     def __init__( self ):
